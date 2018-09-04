@@ -9,9 +9,9 @@ class App
 
     public function __construct()
     {
-        add_action('MediaTracker/Scan/AttachmentScannedAction', array($this, 'saveRelationsToDatabaseAfterScan'), 6, 1);
-        add_filter('MediaTracker/Scan/ContentRelationFilter', array($this, 'filterScanByPostType'), 10, 1);
-        add_filter('MediaTracker/Scan/MetaRelationFilter', array($this, 'filterScanByPostType'), 10, 1);
+        add_action('MediaUsage/Scan/AttachmentScannedAction', array($this, 'saveRelationsToDatabaseAfterScan'), 6, 1);
+        add_filter('MediaUsage/Scan/ContentRelationFilter', array($this, 'filterScanByPostType'), 10, 1);
+        add_filter('MediaUsage/Scan/MetaRelationFilter', array($this, 'filterScanByPostType'), 10, 1);
         add_action('admin_enqueue_scripts', array($this, 'registerScripts'), 6);
         add_action('admin_enqueue_scripts', array($this, 'enqueueScriptsAndStyles'), 6);
         add_action('wp_ajax_scanUsageAjaxMethod', array($this, 'scanUsageAjaxMethod'));
