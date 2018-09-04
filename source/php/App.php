@@ -12,6 +12,21 @@ class App
         add_action('MediaTracker/Scan/AttachmentScannedAction', array($this, 'saveRelationsToDatabaseAfterScan'), 6, 1);
         add_filter('MediaTracker/Scan/ContentRelationFilter', array($this, 'filterScanByPostType'), 10, 1);
         add_filter('MediaTracker/Scan/MetaRelationFilter', array($this, 'filterScanByPostType'), 10, 1);
+        add_action('admin_enqueue_scripts', array($this, 'registerScripts'), 6);
+        add_action('admin_enqueue_scripts', array($this, 'enqueueScriptsAndStyles'), 6);
+    public function enqueueScriptsAndStyles()
+    {
+        if (!apply_filters('MediaUsage/App/enqueueScriptsAndStyles', false)) {
+            return;
+        }
+
+        wp_enqueue_style('hbg-media-usage-css', MEDIAUSAGE_URL . '/dist/' . \MediaUsage\Helper\CacheBust::name('css/media-usage.css'));
+        wp_enqueue_script('hbg-media-usage-js');
+    }
+
+    public function registerScripts()
+    {
+        wp_register_script('hbg-media-usage-js', MEDIAUSAGE_URL . '/dist/' . \MediaUsage\Helper\CacheBust::name('js/media-usage.js'), array('jquery'));
     }
 
    /**
