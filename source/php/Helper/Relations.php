@@ -16,7 +16,7 @@ class Relations
     public static function updateRelations($attachmentId, $relations)
     {
         global $wpdb;
-        $tableName = $wpdb->prefix . \MediaTracker\App::$relationTableName;
+        $tableName = $wpdb->prefix . \MediaUsage\App::$relationTableName;
 
         $relationCount = count($relations);
 
@@ -68,7 +68,7 @@ class Relations
     public static function insertRelations($relations)
     {
         global $wpdb;
-        $tableName = $wpdb->prefix . \MediaTracker\App::$relationTableName;
+        $tableName = $wpdb->prefix . \MediaUsage\App::$relationTableName;
 
         $sql = array();
         $sql[] = "INSERT INTO {$tableName} (attachment_id, object_id, relation_type) VALUES ";
@@ -91,7 +91,7 @@ class Relations
     public static function deleteRelations($relations)
     {
         global $wpdb;
-        $tableName = $wpdb->prefix . \MediaTracker\App::$relationTableName;
+        $tableName = $wpdb->prefix . \MediaUsage\App::$relationTableName;
 
         $sql = array();
         $sql[] = "DELETE FROM {$tableName} WHERE (attachment_id, object_id, relation_type) IN (";
@@ -141,7 +141,7 @@ class Relations
     public static function getRelations($attachmentId)
     {
         global $wpdb;
-        $relationTable = $wpdb->prefix . \MediaTracker\App::$relationTableName;
+        $relationTable = $wpdb->prefix . \MediaUsage\App::$relationTableName;
         $postMetaTable = $wpdb->prefix . 'postmeta';
         $termMetaTable = $wpdb->prefix . 'termmeta';
         $optionsTable = $wpdb->prefix . 'options';
@@ -273,7 +273,7 @@ class Relations
         }
 
         global $wpdb;
-        $tableName = $wpdb->prefix . \MediaTracker\App::$relationTableName;
+        $tableName = $wpdb->prefix . \MediaUsage\App::$relationTableName;
 
         $sql = "
             SELECT *
