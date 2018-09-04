@@ -10,6 +10,33 @@ class App
     public function __construct()
     {
         add_action('MediaTracker/Scan/AttachmentScannedAction', array($this, 'saveRelationsToDatabaseAfterScan'), 6, 1);
+        add_filter('MediaTracker/Scan/ContentRelationFilter', array($this, 'filterScanByPostType'), 10, 1);
+        add_filter('MediaTracker/Scan/MetaRelationFilter', array($this, 'filterScanByPostType'), 10, 1);
+    }
+
+   /**
+    * filterScanByPostType()
+    *
+    * Filter by posttypes when scanning for relations
+    *
+    * @param array $relations
+    * @return void
+    */
+    public function filterScanByPostType($relations)
+    {
+        if (!is_array($relations) || empty($relations)) {
+            return $relations;
+        }
+
+        $postTypesToIgnore = array('revision');
+        $relations = array_filter($relations, function($relation) use ($postTypesToIgnore) {
+            $postType = (isset($relation['post_id'])) ? get_post_type($relation['post_id']) : $relation['post_type'];
+            if (!in_array($postType, $postTypesToIgnore)) {
+                return $relation;
+            }
+        });
+
+        return $relations;
     }
 
    /**
