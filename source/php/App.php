@@ -4,27 +4,63 @@ namespace MediaUsage;
 
 class App
 {
+    public static $installed = false;
+    public static $relationTableName = 'attachment_relationships';
+
     public function __construct()
     {
-        add_action('admin_enqueue_scripts', array($this, 'enqueueStyles'));
-        add_action('admin_enqueue_scripts', array($this, 'enqueueScripts'));
     }
 
     /**
-     * Enqueue required style
+     * Check if plugin is properly installed & create tables etc if not
      * @return void
      */
-    public function enqueueStyles()
+    public static function checkInstall()
     {
-        wp_register_style('cache-bust-plugin-css', MEDIAUSAGE_URL . '/dist/' . \MediaUsage\Helper\CacheBust::name('css/media-usage.css'));
+        global $wpdb;
+
+        if (self::$installed == true) {
+            return true;
+        }
+
+        $relationTable = $wpdb->prefix . self::$relationTableName;
+
+        if ($wpdb->get_var("SHOW TABLES LIKE '$relationTable'") == $relationTable) {
+            self::$installed == true;
+            return true;
+        }
+
+        self::install();
     }
 
     /**
-     * Enqueue required scripts
+     * Creates plugin sql tables etc
      * @return void
      */
-    public function enqueueScripts()
+    public static function install()
     {
-        wp_register_script('cache-bust-plugin-js', MEDIAUSAGE_URL . '/dist/' . \MediaUsage\Helper\CacheBust::name('js/media-usage.js'));
+        global $wpdb;
+
+        $relationTable = $wpdb->prefix . self::$relationTableName;
+        $wpdb_collate = $wpdb->collate;
+
+        $sql =
+        "CREATE TABLE {$relationTable} (
+            relation_id bigint(20) unsigned NOT NULL auto_increment PRIMARY KEY,
+            attachment_id bigint(20) unsigned NOT NULL,
+            object_id bigint(20) unsigned DEFAULT NULL,
+            relation_type longtext COLLATE {$wpdb_collate}
+        )
+        COLLATE {$wpdb_collate}";
+
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+        dbDelta($sql);
     }
+
+    /**
+     * Removes sql tables etc
+     * @return void
+     */
+    public static function uninstall()
+    {}
 }

@@ -35,3 +35,7 @@ $loader->register();
 
 // Start application
 new MediaUsage\App();
+
+// Install & Uninstall actions
+register_activation_hook(__FILE__, 'MediaTracker\App::checkInstall');
+register_uninstall_hook(__FILE__, 'MediaTracker\App::uninstall');
