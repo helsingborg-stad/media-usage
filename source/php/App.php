@@ -17,6 +17,9 @@ class App
         add_action('wp_ajax_scanUsageAjaxMethod', array($this, 'scanUsageAjaxMethod'));
 
         new \MediaUsage\MediaLibrary\BulkScan();
+        new \MediaUsage\MediaLibrary\Edit();
+    }
+
     public function scanUsageAjaxMethod()
     {
         if (!defined('DOING_AJAX') || !DOING_AJAX) {
