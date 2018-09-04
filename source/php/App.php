@@ -15,6 +15,8 @@ class App
         add_action('admin_enqueue_scripts', array($this, 'registerScripts'), 6);
         add_action('admin_enqueue_scripts', array($this, 'enqueueScriptsAndStyles'), 6);
         add_action('wp_ajax_scanUsageAjaxMethod', array($this, 'scanUsageAjaxMethod'));
+
+        new \MediaUsage\MediaLibrary\BulkScan();
     public function scanUsageAjaxMethod()
     {
         if (!defined('DOING_AJAX') || !DOING_AJAX) {
