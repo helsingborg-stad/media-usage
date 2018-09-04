@@ -14,6 +14,28 @@ class App
         add_filter('MediaTracker/Scan/MetaRelationFilter', array($this, 'filterScanByPostType'), 10, 1);
         add_action('admin_enqueue_scripts', array($this, 'registerScripts'), 6);
         add_action('admin_enqueue_scripts', array($this, 'enqueueScriptsAndStyles'), 6);
+        add_action('wp_ajax_scanUsageAjaxMethod', array($this, 'scanUsageAjaxMethod'));
+    public function scanUsageAjaxMethod()
+    {
+        if (!defined('DOING_AJAX') || !DOING_AJAX) {
+            return false;
+        }
+
+        if (!wp_verify_nonce($_POST['nonce'], 'mediaUsageNonce')) {
+            die('Busted!');
+        }
+
+        if (!isset($_POST['attachments']) || !is_array($_POST['attachments']) || empty($_POST['attachments'])) {
+            return;
+        }
+
+        $scanner = new \MediaUsage\Scanner($_POST['attachments']);
+        $scanner->limit = 16;
+        $scanner->scan();
+
+        die;
+    }
+
     public function enqueueScriptsAndStyles()
     {
         if (!apply_filters('MediaUsage/App/enqueueScriptsAndStyles', false)) {
