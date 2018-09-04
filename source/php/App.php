@@ -9,6 +9,21 @@ class App
 
     public function __construct()
     {
+        add_action('MediaTracker/Scan/AttachmentScannedAction', array($this, 'saveRelationsToDatabaseAfterScan'), 6, 1);
+    }
+
+   /**
+    * saveRelationsToDatabaseAfterScan()
+    *
+    * Saves relations to the database after scan has been run (action hook) & set last scan timestamp
+    *
+    * @param array $attachment
+    * @return void
+    */
+    public function saveRelationsToDatabaseAfterScan($attachment)
+    {
+        \MediaUsage\Helper\Relations::updateRelations($attachment['id'], $attachment['relations']);
+        update_post_meta($attachment['id'], 'media_scanner_last_scan', date('Y-m-d H:i:s', time()));
     }
 
     /**
