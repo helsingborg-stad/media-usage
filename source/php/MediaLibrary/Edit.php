@@ -97,7 +97,7 @@ class Edit
             return $message;
         }
 
-        $relations = array_map('\MediaUsage\MediaLibrary\Edit::mapRelations', \MediaUsage\Helper\Relations::getRelationsGrouped($id));
+        $relations = array_map('self::mapRelations', \MediaUsage\Helper\Relations::getRelationsGrouped($id));
 
         //Bail if has no attachments
         if (0 >= count($relations)) {
@@ -139,7 +139,7 @@ class Edit
         return $output;
     }
 
-    public function mapRelations($relation)
+    public static function mapRelations($relation)
     {
         switch ($relation['type']) {
             case 'post':
