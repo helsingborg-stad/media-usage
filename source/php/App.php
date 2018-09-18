@@ -73,6 +73,11 @@ class App
 
         $postTypesToIgnore = array('revision');
         $relations = array_filter($relations, function($relation) use ($postTypesToIgnore) {
+            //Bail if option or termmeta
+            if ($relation['relation_type'] == 'option' || $relation['relation_type'] == 'termmeta') {
+                return $relation;
+            }
+
             $postType = (isset($relation['post_id'])) ? get_post_type($relation['post_id']) : $relation['post_type'];
             if (!in_array($postType, $postTypesToIgnore)) {
                 return $relation;
