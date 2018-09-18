@@ -48,6 +48,13 @@ module.exports = class BulkScanner
     runMediaScanner()
     {
         if (this.queue.length === 0 || this.isScanning === false) {
+            var spinner = $('.js-scan-spinner');
+            if (spinner.hasClass('is-active')) {
+                spinner.removeClass('is-active');
+                $('.js-stop-scan').hide();
+                $('.js-run-scan').show();
+            }
+
             return;
         }
 
