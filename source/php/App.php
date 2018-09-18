@@ -9,6 +9,7 @@ class App
 
     public function __construct()
     {
+        add_action('admin_init', '\MediaUsage\App::checkInstall');
         add_action('MediaUsage/Scan/AttachmentScannedAction', array($this, 'saveRelationsToDatabaseAfterScan'), 6, 1);
         add_filter('MediaUsage/Scan/ContentRelationFilter', array($this, 'filterScanByPostType'), 10, 1);
         add_filter('MediaUsage/Scan/MetaRelationFilter', array($this, 'filterScanByPostType'), 10, 1);
