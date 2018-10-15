@@ -23,7 +23,7 @@ class MediaUsage {
 
             $('.row-actions').each(function () {
                 var url = $(this).find('.edit a').prop('href');
-                var url = $(this).closest('tr').find('.edit a').prop('href');
+
                 $(this).find('.delete').addClass('hidden');
                 $(this).find('.edit').after('<span class="content-attached"><a data-url="'+url+'"  onclick="return false;" class="checkDependencies aria-button-if-js" style="color:red;" href="">Radera permanent</a></span>  | ');
             });
