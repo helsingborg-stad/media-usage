@@ -5,19 +5,23 @@ const SingleScan = require('./SingleScan.js');
 
 
 class MediaUsage {
+
     constructor() {
 
+        // Warn user when deleting media in library
         this.warning();
+        this.deleteLink();
+
+        // Scar media
         new BulkScan();
         new SingleScan();
-        this.deleteLink();
+
 
     }
 
 
     deleteLink() {
 
-        //runMediaScanner();
         $('.row-actions').css('left','0px');
         $(window).load(function() {
 
@@ -25,7 +29,7 @@ class MediaUsage {
                 var url = $(this).find('.edit a').prop('href');
 
                 $(this).find('.delete').addClass('hidden');
-                $(this).find('.edit').after('<span class="content-attached"><a data-url="'+url+'"  onclick="return false;" class="checkDependencies aria-button-if-js" style="color:red;" href="">Radera permanent</a></span>  | ');
+                $(this).find('.edit').after('<span class="content-attached"><a data-postType="" data-url="'+url+'"  onclick="return false;" class="checkDependencies aria-button-if-js" style="color:red;" href="">Radera permanent</a></span>  | ');
             });
 
         });
@@ -33,6 +37,7 @@ class MediaUsage {
 
 
     warning() {
+
         $(document).on('click', '.checkDependencies', function (e) {
             var href = $(this).attr('data-url');
             var reg = new RegExp( '[?&]' + 'post' + '=([^&#]*)', 'i' );

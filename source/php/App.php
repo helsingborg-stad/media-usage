@@ -44,9 +44,14 @@ class App
 
     public function enqueueScriptsAndStyles()
     {
-        if (!apply_filters('MediaUsage/App/enqueueScriptsAndStyles', false)) {
-            return;
+        $screen = get_current_screen();
+
+        if ($screen->id != 'upload') {
+            if (!apply_filters('MediaUsage/App/enqueueScriptsAndStyles', false)) {
+                return;
+            }
         }
+
 
         wp_enqueue_style('hbg-media-usage-css', MEDIAUSAGE_URL . '/dist/' . \MediaUsage\Helper\CacheBust::name('css/media-usage.css'));
         wp_enqueue_script('hbg-media-usage-js');
