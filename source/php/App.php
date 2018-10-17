@@ -16,6 +16,7 @@ class App
         add_action('admin_enqueue_scripts', array($this, 'registerScripts'), 6);
         add_action('admin_enqueue_scripts', array($this, 'enqueueScriptsAndStyles'), 6);
         add_action('wp_ajax_scanUsageAjaxMethod', array($this, 'scanUsageAjaxMethod'));
+        add_action('wp_ajax_getMediaPostType', array($this, 'getMediaPostType'));
 
         new \MediaUsage\MediaLibrary\BulkScan();
         new \MediaUsage\MediaLibrary\Edit();
@@ -42,6 +43,19 @@ class App
         die;
     }
 
+    public function getMediaPostType()
+    {
+        if (!defined('DOING_AJAX') || !DOING_AJAX) {
+            return false;
+        }
+
+        if (!wp_verify_nonce($_POST['nonce'], 'hbgmedia')) {
+            die('YO! No nonce');
+        }
+        $postTitle = get_the_title($_POST['id']);
+        wp_send_json($postTitle);
+    }
+
     public function enqueueScriptsAndStyles()
     {
         $screen = get_current_screen();
@@ -52,9 +66,12 @@ class App
             }
         }
 
-
         wp_enqueue_style('hbg-media-usage-css', MEDIAUSAGE_URL . '/dist/' . \MediaUsage\Helper\CacheBust::name('css/media-usage.css'));
         wp_enqueue_script('hbg-media-usage-js');
+        wp_localize_script('hbg-media-usage-js', 'hbgmedia', array(
+            'url' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('hbgmedia')
+        ));
     }
 
     public function registerScripts()
