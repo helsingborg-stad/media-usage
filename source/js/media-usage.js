@@ -33,7 +33,6 @@ class MediaUsage {
                     $(this).find('.delete').addClass('hidden');
                     $(this).find('.edit').after('<span class="content-attached"><a data-postType="" data-url="'+url+'"  onclick="return false;" class="checkDependencies aria-button-if-js" href="">Radera permanent</a></span>  | ');
                 }
-
             });
         });
     }
@@ -41,7 +40,6 @@ class MediaUsage {
     warning() {
 
         $(document).on('click', '.checkDependencies', function (e) {
-
             var reg = new RegExp( '[?&]' + 'post' + '=([^&#]*)', 'i' );
             var stringHref = reg.exec($(this).attr('data-url'));
 
