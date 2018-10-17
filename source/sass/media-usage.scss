@@ -1,3 +1,9 @@
+.checkDependencies {
+    color:#a00;
+    &:hover {
+        color:red;
+    }
+}
 .spinner.is-active {
     float: none;
 }

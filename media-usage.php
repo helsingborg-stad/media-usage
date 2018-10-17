@@ -22,7 +22,10 @@ define('MEDIAUSAGE_PATH', plugin_dir_path(__FILE__));
 define('MEDIAUSAGE_URL', plugins_url('', __FILE__));
 define('MEDIAUSAGE_TEMPLATE_PATH', MEDIAUSAGE_PATH . 'templates/');
 
-load_plugin_textdomain('media-usage', false, plugin_basename(dirname(__FILE__)) . '/languages');
+
+add_action('plugins_loaded', function () {
+    load_plugin_textdomain('media-usage', false, plugin_basename(dirname(__FILE__)) . '/languages');
+});
 
 require_once MEDIAUSAGE_PATH . 'source/php/Vendor/Psr4ClassLoader.php';
 require_once MEDIAUSAGE_PATH . 'Public.php';
@@ -33,9 +36,10 @@ $loader->addPrefix('MediaUsage', MEDIAUSAGE_PATH);
 $loader->addPrefix('MediaUsage', MEDIAUSAGE_PATH . 'source/php/');
 $loader->register();
 
+add_action('plugins_loaded', function () {
 // Start application
-new MediaUsage\App();
-
+    new MediaUsage\App();
+});
 // Install & Uninstall actions
 register_activation_hook(__FILE__, 'MediaTracker\App::checkInstall');
 register_uninstall_hook(__FILE__, 'MediaTracker\App::uninstall');

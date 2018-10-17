@@ -31,7 +31,7 @@ class MediaUsage {
                 var strong = $(this).closest('tr').find('.parent.column-parent a').find('strong');
                 if (strong) {
                     $(this).find('.delete').addClass('hidden');
-                    $(this).find('.edit').after('<span class="content-attached"><a data-postType="" data-url="'+url+'"  onclick="return false;" class="checkDependencies aria-button-if-js" style="color:red;" href="">Radera permanent</a></span>  | ');
+                    $(this).find('.edit').after('<span class="content-attached"><a data-postType="" data-url="'+url+'"  onclick="return false;" class="checkDependencies aria-button-if-js" href="">Radera permanent</a></span>  | ');
                 }
 
             });

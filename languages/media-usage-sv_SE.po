@@ -1,0 +1,76 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Media Usage\n"
+"POT-Creation-Date: 2018-10-17 15:30+0200\n"
+"PO-Revision-Date: 2018-10-17 15:35+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.12\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: media-usage.php\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: source/php/App.php:82
+msgid ""
+"Your about too delete an attachment that is attached to following post/page"
+msgstr ""
+"OBS! Du håller på att radera en fil som är kopplad till följande inlägg/"
+"sida"
+
+#: source/php/MediaLibrary/BulkScan.php:23
+msgid "Bulk Scanner"
+msgstr "Bulk skanner"
+
+#: source/php/MediaLibrary/BulkScan.php:76
+msgid "Scanned attachments"
+msgstr "Skannade filer"
+
+#: source/php/MediaLibrary/BulkScan.php:82
+msgid "Run scan"
+msgstr "Starta Skan"
+
+#: source/php/MediaLibrary/BulkScan.php:83
+msgid "Stop scan"
+msgstr "Stoppa skanning"
+
+#: source/php/MediaLibrary/Edit.php:18
+msgid "Attachment usage"
+msgstr "Användning"
+
+#: source/php/MediaLibrary/Edit.php:92
+msgid "Attachment has not been scanned yet"
+msgstr "Bild har inte blivit skannad än"
+
+#: source/php/MediaLibrary/Edit.php:104
+msgid "No usage found"
+msgstr "Används inte någonstans"
+
+#. Plugin Name of the plugin/theme
+msgid "Media Usage"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/helsingborg-stad/media-usage"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Track the use of attachments across posts, meta and options."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Nikolas Ramstedt"
+msgstr "Nickolas Ramstedt, Johan Silvergrund"
+
+#. Author URI of the plugin/theme
+msgid "https://github.com/helsingborg-stad"
+msgstr ""
