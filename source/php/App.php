@@ -68,15 +68,20 @@ class App
 
         wp_enqueue_style('hbg-media-usage-css', MEDIAUSAGE_URL . '/dist/' . \MediaUsage\Helper\CacheBust::name('css/media-usage.css'));
         wp_enqueue_script('hbg-media-usage-js');
-        wp_localize_script('hbg-media-usage-js', 'hbgmedia', array(
-            'url' => admin_url('admin-ajax.php'),
-            'nonce' => wp_create_nonce('hbgmedia')
-        ));
     }
 
     public function registerScripts()
     {
         wp_register_script('hbg-media-usage-js', MEDIAUSAGE_URL . '/dist/' . \MediaUsage\Helper\CacheBust::name('js/media-usage.js'), array('jquery'));
+        wp_localize_script(
+            'hbg-media-usage-js',
+            'hbgmedia',
+                array(
+                    'url' => admin_url('admin-ajax.php'),
+                    'nonce' => wp_create_nonce('hbgmedia'),
+                    'response' => __( 'Your about too delete an attachment that is attached to following post/page', 'media-usage' )
+                )
+        );
     }
 
    /**
