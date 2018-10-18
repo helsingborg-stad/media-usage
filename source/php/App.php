@@ -16,7 +16,7 @@ class App
         add_action('admin_enqueue_scripts', array($this, 'registerScripts'), 6);
         add_action('admin_enqueue_scripts', array($this, 'enqueueScriptsAndStyles'), 6);
         add_action('wp_ajax_scanUsageAjaxMethod', array($this, 'scanUsageAjaxMethod'));
-        add_action('wp_ajax_getMediaPostType', array($this, 'getMediaPostType'));
+        add_action('wp_ajax_getMediaPostTitle', array($this, 'getMediaPostTitle'));
 
         new \MediaUsage\MediaLibrary\BulkScan();
         new \MediaUsage\MediaLibrary\Edit();
@@ -43,7 +43,7 @@ class App
         die;
     }
 
-    public function getMediaPostType()
+    public function getMediaPostTitle()
     {
         if (!defined('DOING_AJAX') || !DOING_AJAX) {
             return false;
@@ -76,7 +76,7 @@ class App
         wp_localize_script(
             'hbg-media-usage-js',
             'hbgmedia',
-                array(
+                array (
                     'url' => admin_url('admin-ajax.php'),
                     'nonce' => wp_create_nonce('hbgmedia'),
                     'response' => __( 'Your about too delete an attachment that is attached to following post/page', 'media-usage' ),
