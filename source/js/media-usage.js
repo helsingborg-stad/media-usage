@@ -13,17 +13,14 @@ class MediaUsage {
         // Warn user when deleting media in library
         this.warning();
         this.deleteLink();
-
         // Scan media
         new BulkScan();
         new SingleScan();
     }
 
-
     deleteLink() {
 
         $(window).load(function () {
-
             var skipNextStep = false;
 
             $(document).on('click', '.attachment-preview', function (e) {
@@ -46,6 +43,7 @@ class MediaUsage {
                     }
                 });
             }
+
         });
     }
 
