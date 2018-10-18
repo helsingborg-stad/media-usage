@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Media Usage\n"
-"POT-Creation-Date: 2018-10-17 15:30+0200\n"
-"PO-Revision-Date: 2018-10-17 15:35+0200\n"
+"POT-Creation-Date: 2018-10-18 09:45+0200\n"
+"PO-Revision-Date: 2018-10-18 09:46+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv\n"
@@ -24,8 +24,11 @@ msgstr ""
 msgid ""
 "Your about too delete an attachment that is attached to following post/page"
 msgstr ""
-"OBS! Du håller på att radera en fil som är kopplad till följande inlägg/"
-"sida"
+"OBS! Du håller på att radera en fil som är kopplad till följande inlägg/sida"
+
+#: source/php/App.php:83
+msgid "Delete file permanent"
+msgstr "Radera permanent"
 
 #: source/php/MediaLibrary/BulkScan.php:23
 msgid "Bulk Scanner"

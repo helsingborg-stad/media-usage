@@ -79,7 +79,8 @@ class App
                 array(
                     'url' => admin_url('admin-ajax.php'),
                     'nonce' => wp_create_nonce('hbgmedia'),
-                    'response' => __( 'Your about too delete an attachment that is attached to following post/page', 'media-usage' )
+                    'response' => __( 'Your about too delete an attachment that is attached to following post/page', 'media-usage' ),
+                    'deleteBtn' => __( 'Delete file permanent', 'media-usage' )
                 )
         );
     }
