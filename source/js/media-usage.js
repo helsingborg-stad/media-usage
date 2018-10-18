@@ -17,8 +17,6 @@ class MediaUsage {
         // Scar media
         new BulkScan();
         new SingleScan();
-
-
     }
 
 
@@ -33,7 +31,7 @@ class MediaUsage {
                 var title = $('.media-modal-content').find('.setting .name').next('span').find('a').text();
                 if (title) {
                     $('.media-modal-content .actions').find('.delete-attachment').remove();
-                    $('.media-modal-content .actions').append('<a data-url="' + url + '"  onclick="return false;" href="" class="checkDependencies">'+hbgmedia.deleteBtn+'</a>');
+                    $('.media-modal-content .actions').append('<a data-url="' + url + '"  onclick="return false;" href="" class="checkDependencies">' + hbgmedia.deleteBtn + '</a>');
                 }
                 skipNextStep = true;
             });
@@ -44,7 +42,7 @@ class MediaUsage {
                     var strong = $(this).closest('tr').find('.parent.column-parent a').find('strong');
                     if (strong) {
                         $(this).find('.delete').addClass('hidden');
-                        $(this).find('.edit').after('<span class="content-attached"><a data-postType="" data-url="' + url + '"  onclick="return false;" class="checkDependencies aria-button-if-js" href="">'+hbgmedia.deleteBtn+'</a></span>  | ');
+                        $(this).find('.edit').after('<span class="content-attached"><a data-postType="" data-url="' + url + '"  onclick="return false;" class="checkDependencies aria-button-if-js" href="">' + hbgmedia.deleteBtn + '</a></span>  | ');
                     }
                 });
             }
@@ -72,7 +70,6 @@ class MediaUsage {
                     if (confirmResponse) {
                         return showNotice.warn();
                     }
-                    ;
                 });
             }
             else {
