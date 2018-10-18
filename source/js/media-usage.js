@@ -14,7 +14,7 @@ class MediaUsage {
         this.warning();
         this.deleteLink();
 
-        // Scar media
+        // Scan media
         new BulkScan();
         new SingleScan();
     }
@@ -29,7 +29,6 @@ class MediaUsage {
             $(document).on('click', '.attachment-preview', function (e) {
                 var url = $('.media-modal-content').find('.setting .name').next('span').find('a').prop('href');
                 var title = $('.media-modal-content').find('.setting .name').next('span').find('a').text();
-                console.log(title);
                 if (title) {
                     $('.media-modal-content .actions').find('.delete-attachment').remove();
                     $('.media-modal-content .actions').append('<a data-url="' + url + '"  onclick="return false;" href="" class="checkDependencies">' + hbgmedia.deleteBtn + '</a>');
