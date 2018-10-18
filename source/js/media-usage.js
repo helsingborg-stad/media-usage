@@ -24,7 +24,7 @@ class MediaUsage {
 
         $(window).load(function () {
 
-            var skipNextStep = true;
+            var skipNextStep = false;
 
             $(document).on('click', '.attachment-preview', function (e) {
                 var url = $('.media-modal-content').find('.setting .name').next('span').find('a').prop('href');
