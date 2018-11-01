@@ -175,12 +175,22 @@ class App
         dbDelta($sql);
     }
 
-
+    /**
+     * Removes images
+     * @return bool || string json
+     */
     public function deleteAttachment( $post ) {
+        if (!defined('DOING_AJAX') || !DOING_AJAX) {
+            return false;
+        }
 
+        if (!wp_verify_nonce($_POST['nonce'], 'hbgmedia')) {
+            die('YO! No nonce');
+        }
         if(!wp_delete_attachment( $_POST['id'], true )) {
             return false;
         }
+        return wp_send_json('Image removed');
     }
 
 
