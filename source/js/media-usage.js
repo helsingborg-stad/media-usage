@@ -75,7 +75,7 @@ class MediaUsage {
                             'post_type': 'attachment'
                         };
                         jQuery.post(hbgmedia.url, Removedata, function (resp) {
-                            location.href = '/wp-admin/upload.php';
+                            location.href = 'upload.php';
                         });
                     }
                 });
