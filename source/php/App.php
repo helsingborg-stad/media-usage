@@ -17,7 +17,7 @@ class App
         add_action('admin_enqueue_scripts', array($this, 'enqueueScriptsAndStyles'), 6);
         add_action('wp_ajax_scanUsageAjaxMethod', array($this, 'scanUsageAjaxMethod'));
         add_action('wp_ajax_getMediaPostTitle', array($this, 'getMediaPostTitle'));
-
+        add_action( 'wp_ajax_deleteAttachment', array($this, 'deleteAttachment') );
         new \MediaUsage\MediaLibrary\BulkScan();
         new \MediaUsage\MediaLibrary\Edit();
     }
@@ -174,6 +174,15 @@ class App
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
         dbDelta($sql);
     }
+
+
+    public function deleteAttachment( $post ) {
+
+        if(!wp_delete_attachment( $_POST['id'], true )) {
+            return false;
+        }
+    }
+
 
     /**
      * Removes sql tables etc
