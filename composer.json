@@ -5,8 +5,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Nikolas Ramstedt, Johan Silvergrund",
-            "email": "nikolas.ramstedt@helsingborg.se, johan.silvergrund@hiq.se"
+            "name": "Nikolas Ramstedt",
+            "email": "nikolas.ramstedt@helsingborg.se"
         }
     ],
     "require": {}
