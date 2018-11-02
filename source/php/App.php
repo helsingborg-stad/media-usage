@@ -187,9 +187,14 @@ class App
         if (!wp_verify_nonce($_POST['nonce'], 'hbgmedia')) {
             die('YO! No nonce');
         }
-        if(!wp_delete_attachment( $_POST['id'], true )) {
-            return false;
+        $attachments = get_attached_media( '', $_POST['id'] );
+        foreach ($attachments as $attachment) {
+            wp_delete_attachment( $attachment->ID, 'true' );
         }
+
+        /*if(!wp_delete_attachment( $_POST['id'], true )) {
+            return false;
+        }*/
         return wp_send_json('Image removed');
     }
 
