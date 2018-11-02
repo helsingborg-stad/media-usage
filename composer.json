@@ -6,7 +6,9 @@
     "authors": [
         {
             "name": "Nikolas Ramstedt",
-            "email": "nikolas.ramstedt@helsingborg.se"
+            "email": "nikolas.ramstedt@helsingborg.se",
+            "name": "Johan Silvergrund",
+            "email": "johan.silvergrund@hiq.se"
         }
     ],
     "require": {}
