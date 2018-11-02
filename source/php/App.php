@@ -180,21 +180,20 @@ class App
      * @return bool || string json
      */
     public function deleteAttachment( $post ) {
+
         if (!defined('DOING_AJAX') || !DOING_AJAX) {
             return false;
         }
 
         if (!wp_verify_nonce($_POST['nonce'], 'hbgmedia')) {
-            die('YO! No nonce');
+            die('YO! No nonce.. ? That makes no sense....');
         }
+
         $attachments = get_attached_media( '', $_POST['id'] );
         foreach ($attachments as $attachment) {
             wp_delete_attachment( $attachment->ID, 'true' );
         }
 
-        /*if(!wp_delete_attachment( $_POST['id'], true )) {
-            return false;
-        }*/
         return wp_send_json('Image removed');
     }
 
