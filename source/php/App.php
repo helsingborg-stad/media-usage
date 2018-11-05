@@ -190,11 +190,14 @@ class App
         }
 
         $attachments = get_attached_media( '', $_POST['id'] );
+
         foreach ($attachments as $attachment) {
-            wp_delete_attachment( $attachment->ID, 'true' );
+            if (substr($_POST['imgName'], 0, (strlen ($_POST['imgName'])) - (strlen (strrchr($_POST['imgName'],'.'))))  === $attachment->post_title) {
+                wp_delete_attachment( $attachment->ID, 'true' );
+            }
         }
 
-        return wp_send_json('Image removed');
+        return wp_send_json(substr($_POST['imgName'], 0, (strlen ($_POST['imgName'])) - (strlen (strrchr($_POST['imgName'],'.'))))  ." ::". $attachment->post_title);
     }
 
 

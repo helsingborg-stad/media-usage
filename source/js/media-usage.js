@@ -28,9 +28,17 @@ class MediaUsage {
                 var title = $('.media-modal-content').find('.setting .name').next('span').find('a').text();
                 var removalID = $('.media-modal-content .attachment-details').attr('data-id');
                 var removeUrl = 'post.php?action=delete&post='+removalID+'&_wpnonce='+hbgmedia.rmNonce;
+
                 if (title) {
+                    var imgUrl;
+                    $('.media-modal-content .filename').each(function( index ) {
+                        if(index == 0) {
+                            $(this).find('strong').remove();
+                            imgUrl = $(this).text().trim();
+                        }
+                    });
                     $('.media-modal-content .actions .delete-attachment').remove();
-                    $('.media-modal-content .actions').append('<a data-url="' + url + '"  onclick="return false;" href="'+removeUrl+'" class="checkDependencies">' + hbgmedia.deleteBtn + '</a>');
+                    $('.media-modal-content .actions').append('<a data-imgname="'+imgUrl+'"  data-url="' + url + '"  onclick="return false;" href="'+removeUrl+'" class="checkDependencies">' + hbgmedia.deleteBtn + '</a>');
                 }
                 skipNextStep = true;
             });
@@ -38,11 +46,14 @@ class MediaUsage {
             if (!skipNextStep) {
                 $('.row-actions').each(function () {
                     var url = $(this).closest('tr').find('.parent.column-parent a').prop('href');
-                    var strong = $(this).closest('tr').find('.parent.column-parent a').find('strong');
-                    if (strong) {
+                    var strong = $(this).closest('tr').find('.parent.column-parent').find('strong');
+
+                    if (strong.length > 0) {
+                        $(this).closest('tr').find('.filename span').remove();
+                        var imgUrl = $(this).closest('tr').find('.filename').text().trim();
                         var removeUrl = $(this).find('.delete a').attr('href');
                         $(this).find('.delete').addClass('hidden');
-                        $(this).find('.edit').after('<span class="content-attached"><a data-url="' + url + '"  onclick="return false;" class="checkDependencies aria-button-if-js" href="'+removeUrl+'">' + hbgmedia.deleteBtn + '</a></span>  | ');
+                        $(this).find('.edit').after('<span class="content-attached"><a data-imgname="'+imgUrl+'" data-url="' + url + '"  onclick="return false;" class="checkDependencies aria-button-if-js" href="'+removeUrl+'">' + hbgmedia.deleteBtn + '</a></span>  | ');
                     }
                 });
             }
@@ -54,7 +65,7 @@ class MediaUsage {
         $(document).on('click', '.checkDependencies', function (e) {
             var reg = new RegExp('[?&]' + 'post' + '=([^&#]*)', 'i');
             var stringHref = reg.exec($(this).attr('data-url'));
-
+            var imgName = $(this).attr('data-imgname');
             if (stringHref) {
                 var data = {
                     'action': 'getMediaPostTitle',
@@ -72,7 +83,8 @@ class MediaUsage {
                             'action': 'deleteAttachment',
                             'nonce': hbgmedia.nonce,
                             'id': stringHref[1],
-                            'post_type': 'attachment'
+                            'post_type': 'attachment',
+                            'imgName' : imgName.trim()
                         };
                         jQuery.post(hbgmedia.url, Removedata, function (resp) {
                             location.href = 'upload.php';
