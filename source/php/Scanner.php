@@ -192,7 +192,7 @@ class Scanner
                                 meta_key,
                                 post_id
                             FROM {$tablePrefix}postmeta LEFT JOIN {$tablePrefix}posts ON {$tablePrefix}postmeta.meta_value = {$tablePrefix}posts.ID
-                            WHERE {$tablePrefix}posts.post_type = 'attachment' AND {$tablePrefix}options.option_value REGEXP '^[0-9]+$';",
+                            WHERE {$tablePrefix}posts.post_type = 'attachment' AND {$tablePrefix}postmeta.meta_value REGEXP '^[0-9]+$';",
             'termmeta' => "SELECT
                                 meta_value as attachment_id,
                                 meta_id as object_id,
@@ -200,14 +200,14 @@ class Scanner
                                 meta_key,
                                 term_id
                             FROM {$tablePrefix}termmeta LEFT JOIN {$tablePrefix}posts ON {$tablePrefix}termmeta.meta_value = {$tablePrefix}posts.ID
-                            WHERE {$tablePrefix}posts.post_type = 'attachment' AND {$tablePrefix}options.option_value REGEXP '^[0-9]+$';",
+                            WHERE {$tablePrefix}posts.post_type = 'attachment' AND {$tablePrefix}termmeta.meta_value REGEXP '^[0-9]+$';",
             'options' => "SELECT
                                 option_value as attachment_id,
                                 option_id as object_id,
                                 'option' as relation_type,
                                 option_name
                             FROM {$tablePrefix}options LEFT JOIN {$tablePrefix}posts ON {$tablePrefix}options.option_value = {$tablePrefix}posts.ID
-                            WHERE {$tablePrefix}posts.post_type = 'attachment' AND {$tablePrefix}options.option_value REGEXP '^[0-9]+$';"
+                            WHERE {$tablePrefix}posts.post_type = 'attachment' AND {$tablePrefix}options.meta_value REGEXP '^[0-9]+$';",
         );
 
         $sqlQueries = apply_filters('MediaUsage/Scanner/metaQueries', $sqlQueries, $query);
