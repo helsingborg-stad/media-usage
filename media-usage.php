@@ -27,19 +27,16 @@ add_action('plugins_loaded', function () {
     load_plugin_textdomain('media-usage', false, plugin_basename(dirname(__FILE__)) . '/languages');
 });
 
-require_once MEDIAUSAGE_PATH . 'source/php/Vendor/Psr4ClassLoader.php';
+// Autoload from plugin
+if (file_exists(MEDIAUSAGE_PATH . 'vendor/autoload.php')) {
+    require_once MEDIAUSAGE_PATH . 'vendor/autoload.php';
+}
 require_once MEDIAUSAGE_PATH . 'Public.php';
 
-// Instantiate and register the autoloader
-$loader = new MediaUsage\Vendor\Psr4ClassLoader();
-$loader->addPrefix('MediaUsage', MEDIAUSAGE_PATH);
-$loader->addPrefix('MediaUsage', MEDIAUSAGE_PATH . 'source/php/');
-$loader->register();
-
 add_action('plugins_loaded', function () {
-// Start application
     new MediaUsage\App();
 });
+
 // Install & Uninstall actions
 register_activation_hook(__FILE__, 'MediaTracker\App::checkInstall');
 register_uninstall_hook(__FILE__, 'MediaTracker\App::uninstall');
