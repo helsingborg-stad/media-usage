@@ -9,10 +9,11 @@
             "email": "nikolas.ramstedt@helsingborg.se"
         }
     ],
-    "require": {},
+    "require": [],
     "autoload": {
         "psr-4": {
-          "MediaUsage\\": "source/php/"
+            "MediaUsage\\": "source/php/"
         }
-    }
+    },
+    "version": "2.0.0"
 }
