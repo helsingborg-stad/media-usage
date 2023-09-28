@@ -1,6 +1,6 @@
 {
     "name": "media-usage",
-    "version": "3.0.2",
+    "version": "3.0.3",
     "description": "Track the use of attachments across posts, meta and options.",
     "main": "",
     "scripts": {
