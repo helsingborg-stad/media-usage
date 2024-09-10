@@ -1,6 +1,6 @@
 {
     "name": "@helsingborg-stad/media-usage",
-    "version": "3.0.4",
+    "version": "3.0.5",
     "description": "Track the use of attachments across posts, meta and options.",
     "main": "",
     "scripts": {
@@ -18,7 +18,9 @@
     "bugs": {
         "url": "https://github.com/helsingborg-stad/media-usage/issues"
     },
-    "files": ["dist/"],
+    "files": [
+        "dist/"
+    ],
     "homepage": "https://github.com/helsingborg-stad/media-usage",
     "devDependencies": {
         "autoprefixer": "^10.4.2",
