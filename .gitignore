@@ -54,3 +54,4 @@ dist/.temp
 # track these files, if they exist
 !.gitignore
 !.editorconfig
+!.github
