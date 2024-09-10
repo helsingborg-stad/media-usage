@@ -4,7 +4,7 @@
  * Plugin Name:       Media Usage
  * Plugin URI:        https://github.com/helsingborg-stad/media-usage
  * Description:       Track the use of attachments across posts, meta and options.
- * Version: 3.0.5
+ * Version: 3.0.6
  * Author:            Nikolas Ramstedt, Johan Silvergrund
  * Author URI:        https://github.com/helsingborg-stad
  * License:           MIT
