@@ -86,6 +86,7 @@ module.exports = {
          * Output manifest.json for cache busting
          */
         new WebpackManifestPlugin({
+            fileName: "rev-manifest.json",
             // Filter manifest items
             filter: function (file) {
                 // Don't include source maps
