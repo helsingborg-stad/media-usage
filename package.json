@@ -1,6 +1,6 @@
 {
     "name": "@helsingborg-stad/media-usage",
-    "version": "3.0.6",
+    "version": "3.0.7",
     "description": "Track the use of attachments across posts, meta and options.",
     "main": "",
     "scripts": {
